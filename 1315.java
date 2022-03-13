@@ -13,6 +13,8 @@
  *     }
  * }
  */
+
+// BFS Approach
 class Solution {
     public int sumEvenGrandparent(TreeNode root) {
         Queue<TreeNode> q = new LinkedList<>();
@@ -40,5 +42,18 @@ class Solution {
             }
         }
         return sum;
+    }
+}
+
+// DFS Approach
+class Solution {
+    private int DFS(TreeNode root, int parent, int gParent) {
+        if(root == null) return 0;
+        int sum = DFS(root.left, root.val, parent) + DFS(root.right, root.val, parent);
+        if(gParent > 0 && (gParent & 1) != 1) sum += root.val;
+        return sum;
+    }
+    public int sumEvenGrandparent(TreeNode root) {
+        return DFS(root, 0, 0);
     }
 }
