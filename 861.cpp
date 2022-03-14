@@ -1,3 +1,4 @@
+// Time Complexity: O(MN)
 class Solution {
 public:
     int binaryToDecimal(string num) {
